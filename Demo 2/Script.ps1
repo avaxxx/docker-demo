@@ -1,1 +1,1 @@
-Get-Variable
+Get-ChildItem Env:

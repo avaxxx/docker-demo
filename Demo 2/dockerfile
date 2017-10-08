@@ -1,2 +1,5 @@
-FROM microsoft/nanoserver:10.0.10.0.14393.1066
-ADD Script.ps1 C:\Script.ps1
+FROM microsoft/nanoserver
+
+COPY Script.ps1 c:\\Script.ps1
+
+CMD ["powershell.exe", "c:\\Script.ps1"]
