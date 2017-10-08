@@ -1,5 +1,9 @@
+# Using docker
 
-#Building docker image
+# Script container
+
+
+# Building docker image
 
 Docker images are layered. The bottom layer is the operating system, which can be a full OS
 like Windows Server Core, or a minimal OS like Microsoft Nano Server. On top of that are

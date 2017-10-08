@@ -18,4 +18,4 @@ docker.exe images
 
 
 
-docker.exe container run dockeronwindows/ch01-whale
+docker.exe container run dockeronwindows/ch01-whale -it powershell
