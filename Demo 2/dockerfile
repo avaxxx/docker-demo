@@ -1,0 +1,2 @@
+FROM microsoft/nanoserver:10.0.10.0.14393.1066
+ADD Script.ps1 C:\Script.ps1
