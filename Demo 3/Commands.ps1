@@ -2,23 +2,9 @@ Install-Module -Scope CurrentUser posh-docker
 
 Import-Module posh-docker
 
-docker.exe build -t quadrotech/demo3 .
+docker.exe build -t quadrotech/demo4 .
 
 #region Output log
-# Sending build context to Docker daemon  76.29kB
-# Step 1/8 : FROM microsoft/dotnet:2.0.0-sdk-nanoserver AS builder
-# 2.0.0-sdk-nanoserver: Pulling from microsoft/dotnet
-# bce2fbc256ea: Downloading
-# 5cd49617cf50: Downloading
-# cdb7b07cc9d2: Download complete
-# 7cf5194d8059: Waiting
-# bfb7d0dded7b: Waiting
-# 816ef244bda7: Waiting
-# 63573beddeb6: Waiting
-# 0731779f9564: Waiting
-# 6e6e7b8f7f3d: Waiting
-# d1ea8eb099dc: Waiting
-# image operating system "windows" cannot be used on this platform
 # PS C:\Projects\docker-demo\Demo 3> docker.exe build -t quadrotech/demo3 .
 # Sending build context to Docker daemon  76.29kB
 # Step 1/8 : FROM microsoft/dotnet:2.0.0-sdk-nanoserver AS builder
@@ -89,6 +75,16 @@ docker.exe build -t quadrotech/demo3 .
 # Successfully tagged quadrotech/demo3:latest
 #endregion
 
-docker.exe container run quadrotech/demo3 
+#background container
+#the background container is the one that you'll use most in production - 
+#which keeps a long-running process running in the background. It's a container that
+#behaves like a Windows Service. In Docker terminology, it's called a detached container, and
+#it's the Docker service that keeps it running in the background. Inside the container, the process
+#runs in the foreground. The process might be a web server or a console application polling a
+#message queue for work, but as long as the process keeps running, Docker will keep the
+#container alive.
 
-docker.exe container run -it quadrotech/demo3 powershell 
+docker.exe container run quadrotech/demo4 
+
+docker.exe container run -it quadrotech/demo4 powershell 
+
