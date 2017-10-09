@@ -15,7 +15,4 @@ docker.exe images
 
 #endregion  
 
-
-
-
 docker.exe container run dockeronwindows/ch01-whale -it powershell
