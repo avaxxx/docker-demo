@@ -1,10 +1,10 @@
-# FROM microsoft/dotnet:2.0.0-sdk-nanoserver AS builder
+# FROM microsoft/dotnet:2.0.0-sdk-nanoserver
 # WORKDIR /src
 # COPY src/ .
 # RUN dotnet restore; dotnet build
 # CMD ["dotnet", "run"]
 
-# FROM microsoft/dotnet:1.1-runtime-nanoserver
+# FROM microsoft/dotnet:2.0.0-runtime-nanoserver
 # WORKDIR /dotnetapp
 # COPY ./src/bin/Debug/netcoreapp1.1/publish .
 # CMD ["dotnet", "HelloWorld.NetCore.dll"]

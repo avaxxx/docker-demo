@@ -89,8 +89,6 @@ docker.exe build -t quadrotech/demo3 .
 # Successfully tagged quadrotech/demo3:latest
 #endregion
 
+docker.exe container run quadrotech/demo3 
 
-
-docker container run quadrotech/demo3 
-
-docker container run -it quadrotech/demo3 powershell 
+docker.exe container run -it quadrotech/demo3 powershell 
