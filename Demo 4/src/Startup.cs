@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -24,6 +25,14 @@ namespace HelloWebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            var hostname = Environment.GetEnvironmentVariable("SQLSERVER_HOST") ?? "localhost";
+
+            var password = Environment.GetEnvironmentVariable("SQLSERVER_SA_PASSWORD") ?? "demo123$!";
+
+            var connString = $"Data Source={hostname};Initial Catalog=ProductsDatabase;User ID=sa;Password={password};";
+
+            services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(connString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
