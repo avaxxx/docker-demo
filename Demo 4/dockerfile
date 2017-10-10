@@ -18,25 +18,31 @@ RUN dotnet restore
 COPY src/ ./
 RUN dotnet publish -c Release -o out
 
+
 # build runtime image
 FROM microsoft/aspnetcore:2.0
 WORKDIR /app
 COPY --from=build-env /app/out .
+
+
 ENTRYPOINT ["dotnet", "HelloWebApi.dll"]
 
+# FROM microsoft/aspnetcore-build:2.0 
 
-# # build stage
-# FROM microsoft/dotnet:2.0.0-sdk-jessie AS builder
-# WORKDIR /src
-# COPY src/ .
-# RUN dotnet restore; dotnet build; dotnet publish
+# COPY src/ /app
 
-# # final image stage
-# FROM microsoft/dotnet:2.0.0-runtime-jessie
-# WORKDIR /dotnetapp
-# EXPOSE 80/tcp
-# COPY --from=builder /src/bin/Debug/netcoreapp2.0/publish .
-# # COPY entrypoint.sh ./entrypoint.sh
-# # RUN chmod +x ./entrypoint.sh
-# CMD ["dotnet", "HelloWebApi.dll"]
+# WORKDIR /app
 
+# RUN ["dotnet", "restore"]
+
+# RUN ["dotnet", "build"]
+
+# COPY entrypoint.sh /app/entrypoint.sh
+
+# RUN apt-get update && apt-get install -y dos2unix
+
+# RUN dos2unix /app/entrypoint.sh && apt-get --purge remove -y dos2unix && rm -rf /var/lib/apt/lists/*
+
+# RUN chmod +x ./entrypoint.sh
+
+# CMD /bin/bash ./entrypoint.sh

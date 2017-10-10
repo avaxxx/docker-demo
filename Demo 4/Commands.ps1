@@ -8,15 +8,18 @@ docker pull microsoft/aspnetcore:2.0.0
 
 dotnet build
 
-chcp 852
+
 
 docker-compose build
 
+chcp 852
 
-docker run --name SqlServer -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=demo123$!' -p 1433:1433 -d microsoft/mssql-server-linux:2017-GA 
+docker-compose up
 
-docker.exe build -t quadrotech/demo4444 .
 
-docker run -p 11111:80 -d quadrotech/demo4444
+docker volume ls
 
-docker exec -it 3016b0991239 /bin/bash 
+#ls /var/opt/mssql/data
+
+docker cp SqlServer:/var/opt/mssql/data/ProductsDatabase.mdf C:/Host
+docker cp SqlServer:/var/opt/mssql/data/ProductsDatabase_log.ldf C:/Host

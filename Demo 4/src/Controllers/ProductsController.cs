@@ -58,7 +58,8 @@ namespace HelloWebApi.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            _context.Remove(new Product(){Id = id});
+            var product = _context.Find<Product>(id);
+            _context.Remove(product);
             _context.SaveChanges();
         }
     }
