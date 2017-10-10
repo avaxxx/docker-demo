@@ -23,19 +23,29 @@ services:
             - "8000:80"
         depends_on:
             - SqlServer
+        expose:
+            - "1433"
         environment:
-            SQLSERVER_HOST: 'sqlserver'
+            SQLSERVER_HOST: 172.16.238.10
             SQLSERVER_SA_PASSWORD: 'demo123$$!'
         networks:
-            - aspnetcoreapp-network
+            - app_net
     SqlServer:
         container_name: 'SqlServer'
         image: 'microsoft/mssql-server-linux'
+        ports: 
+            - "1433:1433"
         environment:
             SA_PASSWORD: 'demo123$$!'
             ACCEPT_EULA: 'Y'
         networks:
-            - aspnetcoreapp-network
+            app_net:
+                ipv4_address: 172.16.238.10
 networks:
-  aspnetcoreapp-network:
+  app_net:
     driver: bridge
+    ipam:
+      driver: default
+      config:
+      -
+        subnet: 172.16.238.0/24

@@ -30,7 +30,7 @@ namespace HelloWebApi
 
             var password = Environment.GetEnvironmentVariable("SQLSERVER_SA_PASSWORD") ?? "demo123$!";
 
-            var connString = $"Data Source={hostname};Initial Catalog=ProductsDatabase;User ID=sa;Password={password};";
+            var connString = $"Server={hostname},1433;Database=ProductsDatabase;User=sa;Password={password};";
 
             services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(connString));
         }
