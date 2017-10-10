@@ -1,13 +1,41 @@
+# version: "3"
+# services:
+#     web:
+#         build: .
+#         ports:
+#             - "5000:80"
+#         depends_on:
+#             - SqlServer
+#     SqlServer:
+#         image: 'microsoft/mssql-server-linux'
+#         environment:
+#             SA_PASSWORD: 'demo123$$!'
+#             ACCEPT_EULA: 'Y'
+
 version: "3"
 services:
     web:
-        build: .
+        container_name: 'webui'
+        build: 
+          context: .
+          dockerfile: dockerfile
         ports:
-            - "5000:80"
+            - "8000:80"
         depends_on:
             - SqlServer
+        environment:
+            SQLSERVER_HOST: 'sqlserver'
+            SQLSERVER_SA_PASSWORD: 'demo123$$!'
+        networks:
+            - aspnetcoreapp-network
     SqlServer:
+        container_name: 'SqlServer'
         image: 'microsoft/mssql-server-linux'
         environment:
             SA_PASSWORD: 'demo123$$!'
             ACCEPT_EULA: 'Y'
+        networks:
+            - aspnetcoreapp-network
+networks:
+  aspnetcoreapp-network:
+    driver: bridge
