@@ -24,6 +24,25 @@ FROM microsoft/aspnetcore:2.0
 WORKDIR /app
 COPY --from=build-env /app/out .
 
+RUN apt-get update
+
+RUN  apt-get install curl gnupg apt-transport-https -y
+
+RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
+
+RUN  sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-debian-stretch-prod stretch main" > /etc/apt/sources.list.d/microsoft.list'
+
+RUN  apt-get update
+
+RUN  apt-get install -y powershell
+
+HEALTHCHECK --interval=5s \
+CMD powershell -command \
+    'try { \
+    $response = iwr http://localhost/api/healthcheck -UseBasicParsing; \
+    if ($response.StatusCode -eq 200) { return 0} \
+    else {return 1}; \
+    } catch { return 1 }'
 
 ENTRYPOINT ["dotnet", "HelloWebApi.dll"]
 
