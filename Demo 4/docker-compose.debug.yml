@@ -4,8 +4,8 @@ services:
         image: 'webui-debug'
         container_name: 'webui-debug'
         build: 
-          context: ./src/bin/PublishOutput/
           dockerfile: dockerfile.debug
+          context: ./src/bin/PublishOutput/
         ports:
             - "8000:80"
         depends_on:
