@@ -11,6 +11,14 @@
             ],
             "isBuildCommand": true,
             "problemMatcher": "$msCompile"
+        },
+        {
+            "taskName": "publish",
+            "args": [
+                "${workspaceRoot}/Demo 4/src/HelloWebApi.csproj", "-c", "Debug", "-o", "bin/PublishOutput"
+            ],
+            "isBuildCommand": true,
+            "problemMatcher": "$msCompile"
         }
     ]
 }

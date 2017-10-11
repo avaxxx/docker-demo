@@ -12,12 +12,6 @@
            "args": [],
            "cwd": "${file}"
        },
-   {
-       "type": "PowerShell",
-       "request": "launch",
-       "name": "PowerShell Interactive Session",
-       "cwd": "${workspaceRoot}"
-   },
         {
             "name": ".NET Core Launch (console)",
             "type": "coreclr",
@@ -37,6 +31,28 @@
             "type": "coreclr",
             "request": "attach",
             "processId": "${command:pickProcess}"
+        },
+        {
+            "name": ".NET Core Remote Attach",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "publish",
+            "cwd": "/app",
+            "program": "/app/HelloWebApi.dll",
+            "sourceFileMap": {
+                "/app": "${workspaceRoot}/Demo 4/src/"
+            },
+            "pipeTransport": {
+                "pipeProgram": "docker",
+                "pipeCwd": "${workspaceRoot}",
+                "pipeArgs": [
+                    "exec",
+                    "-i",
+                    "webui-debug"
+                ],
+                "quoteArgs": false,
+                "debuggerPath": "/vsdbg/vsdbg"
+            }
         }
     ]
 }
