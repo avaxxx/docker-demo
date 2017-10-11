@@ -39,9 +39,17 @@ az network public-ip list --resource-group ContainerService --query "[*].{Name:n
 
 #Your public key has been saved in /home/avaxxx/.ssh/id_rsa.pub.
 
-ssh azureuser@104.45.12.33 -A -p 2200 -i <PUB_FILE_LOCATION>
+ssh azureuser@104.45.12.33 -A -p 2200 -i /mnt/c/Users/avaxx/.ssh/id_rsa
 
 #ssh -p 2200 -fNL 2375:localhost:2375 azureuser@104.45.12.33 -i /mnt/c/Users/avaxx/.ssh/id_rsa.pub
+
+docker -H 172.16.0.5:2375 info
+
+docker-compose -H 172.16.0.5:2375 up
+
+#sudo curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+#sudo chmod +x /usr/local/bin/docker-compose
+
 
 az group delete --name ContainerServiceGroup --yes --no-wait
 

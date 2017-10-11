@@ -12,3 +12,12 @@ content-type: application/json
 ###
 
 DELETE http://localhost:8000/api/products/1
+
+###
+
+GET http://quadrotechagents.westeurope.cloudapp.azure.com:8000/api/products HTTP/1.1
+
+###
+
+GET http://52.232.39.223:8000/api/products HTTP/1.1
+
