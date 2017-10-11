@@ -2,7 +2,21 @@ Install-Module -Scope CurrentUser posh-docker
 
 Import-Module posh-docker
 
-docker.exe build -t quadrotech/demo4 .
+docker.exe image build -t quadrotech/demo3 .
+
+docker.exe image tag quadrotech/demo3:latest quadrotech/demo3:1.0.0
+
+Install-Module AzureRM -Force
+
+Import-Module AzureRM
+
+Login-AzureRmAccount
+
+$registry = Get-AzureRmContainerRegistry -ResourceGroupName "quadrotechdemo" -Name "quadrotechdemo"
+$creds = Get-AzureRmContainerRegistryCredential -Registry $Registry
+docker login $Registry.LoginServer -u $creds.Username -p $creds.Password
+
+
 
 #region Output log
 # PS C:\Projects\docker-demo\Demo 3> docker.exe build -t quadrotech/demo3 .
