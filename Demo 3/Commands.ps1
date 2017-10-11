@@ -16,6 +16,14 @@ $registry = Get-AzureRmContainerRegistry -ResourceGroupName "quadrotechdemo" -Na
 $creds = Get-AzureRmContainerRegistryCredential -Registry $Registry
 docker login $Registry.LoginServer -u $creds.Username -p $creds.Password
 
+Get-AzureRmContainerRegistry | Select Loginserver 
+#quadrotechdemo.azurecr.io 
+
+docker tag quadrotech/demo3:latest quadrotechdemo.azurecr.io/demo3:1.0.0
+docker push quadrotechdemo.azurecr.io/demo3:1.0.0
+
+docker pull quadrotechdemo.azurecr.io/demo3:1.0.0
+
 
 
 #region Output log
