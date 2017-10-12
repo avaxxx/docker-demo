@@ -17,6 +17,10 @@ docker container run -it microsoft/nanoserver powershell
 #to run, along with the exact version of the engine that the script needs, so anyone with Docker
 #installed can run that script without having to install the engine.
 
+cd '.\Demo 2'
+
+#------------------------------------------------------------------------------------------------
+
 docker build -t quadrotech/demo2 .
 
 #------------------------------------------------------------------------------------------------
