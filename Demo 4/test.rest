@@ -19,5 +19,14 @@ GET http://quadrotechagents.westeurope.cloudapp.azure.com:8000/api/products HTTP
 
 ###
 
-GET http://52.232.39.223:8000/api/products HTTP/1.1
+POST http://quadrotechagents.westeurope.cloudapp.azure.com:8000/api/products HTTP/1.1
+content-type: application/json
+
+{
+    "name": "test",
+}
+
+###
+
+GET http://52.232.39.223:8000/api/healthcheck HTTP/1.1
 

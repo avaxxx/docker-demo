@@ -41,11 +41,18 @@ az network public-ip list --resource-group ContainerService --query "[*].{Name:n
 
 ssh azureuser@104.45.12.33 -A -p 2200 -i /mnt/c/Users/avaxx/.ssh/id_rsa
 
+export DOCKER_HOST=172.16.0.5:2375
+
 #ssh -p 2200 -fNL 2375:localhost:2375 azureuser@104.45.12.33 -i /mnt/c/Users/avaxx/.ssh/id_rsa.pub
 
 docker -H 172.16.0.5:2375 info
 
 docker-compose -H 172.16.0.5:2375 up
+
+#https://docs.microsoft.com/en-us/azure/container-service/dcos-swarm/container-service-enable-public-access
+
+docker exec -it demo4_web /bin/bash 
+
 
 #sudo curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 #sudo chmod +x /usr/local/bin/docker-compose

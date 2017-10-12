@@ -4,6 +4,8 @@ Import-Module posh-docker
 
 docker.exe image build -t quadrotech/demo3 .
 
+docker run --name WebApi -p 80:80 -d quadrotech/demo3 
+
 docker.exe image tag quadrotech/demo3:latest quadrotech/demo3:1.0.0
 
 Install-Module AzureRM -Force
@@ -23,6 +25,8 @@ docker tag quadrotech/demo3:latest quadrotechdemo.azurecr.io/demo3:1.0.0
 docker push quadrotechdemo.azurecr.io/demo3:1.0.0
 
 docker pull quadrotechdemo.azurecr.io/demo3:1.0.0
+
+az acr repository delete -n quadrotechdemo --repository demo3 --tag 1.0.0
 
 
 
