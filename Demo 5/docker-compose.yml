@@ -1,0 +1,11 @@
+version: "3"
+services:
+    web:
+        container_name: 'demo5'
+        build: 
+          context: .
+          dockerfile: dockerfile
+        ports:
+            - "80:80"
+
+   

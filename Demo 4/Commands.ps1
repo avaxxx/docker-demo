@@ -34,12 +34,17 @@ az acs create --name ContainerService --orchestrator-type Swarm --resource-group
 az network public-ip list --resource-group ContainerService --query "[*].{Name:name,IPAddress:ipAddress}" -o table
 
 
-#swarm-agent-ip-quadrotechagents-1F6F72ED  52.232.39.223
-#swarm-master-ip-quadrotechmgmt-1F6F72ED   104.45.12.33
+# swarm-agent-ip-quadrotechagents-1F6F72ED  52.232.39.223
+# swarm-master-ip-quadrotechmgmt-1F6F72ED   104.45.12.33
 
-#Your public key has been saved in /home/avaxxx/.ssh/id_rsa.pub.
+# Your public key has been saved in /home/avaxxx/.ssh/id_rsa.pub.
 
 ssh azureuser@104.45.12.33 -A -p 2200 -i /mnt/c/Users/avaxx/.ssh/id_rsa
+
+docker swarm init
+
+# docker swarm join --token SWMTKN-1-3p55jpsx8fg30ojkb2mu2sx80caup8t4a5jkjbzlj3f7wi0sxq-5lq8ac5wpsw23e6zx4t7kmfd1 172.16.0.5:2377
+
 
 export DOCKER_HOST=172.16.0.5:2375
 
