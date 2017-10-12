@@ -6,27 +6,64 @@ docker.exe image build -t quadrotech/demo3 .
 
 docker run --name WebApi -p 80:80 -d quadrotech/demo3 
 
-docker.exe image tag quadrotech/demo3:latest quadrotech/demo3:1.0.0
+docker inspect -f "{{ .NetworkSettings.Networks.nat.IPAddress }}" WebApi
 
-Install-Module AzureRM -Force
+az group create --name ContainerRegistry --location westeurope
 
-Import-Module AzureRM
+az acr create --resource-group ContainerRegistry --name quadrotech --sku Basic --admin-enabled true
 
-Login-AzureRmAccount
+az acr login --name quadrotech
 
-$registry = Get-AzureRmContainerRegistry -ResourceGroupName "quadrotechdemo" -Name "quadrotechdemo"
-$creds = Get-AzureRmContainerRegistryCredential -Registry $Registry
-docker login $Registry.LoginServer -u $creds.Username -p $creds.Password
+docker images
 
-Get-AzureRmContainerRegistry | Select Loginserver 
-#quadrotechdemo.azurecr.io 
+az acr show --name quadrotech --query loginServer --output table
+#quadrotech.azurecr.io
 
-docker tag quadrotech/demo3:latest quadrotechdemo.azurecr.io/demo3:1.0.0
-docker push quadrotechdemo.azurecr.io/demo3:1.0.0
+docker tag quadrotech/demo3:latest quadrotech.azurecr.io/demo3:1.0.0
+
+docker images
+
+docker push quadrotech.azurecr.io/demo3:1.0.0
+
+az acr repository list --name quadrotech --output table
 
 docker pull quadrotechdemo.azurecr.io/demo3:1.0.0
 
-az acr repository delete -n quadrotechdemo --repository demo3 --tag 1.0.0
+az acr show --name quadrotech --query loginServer
+
+az acr credential show --name quadrotech --query "passwords[0].value"
+
+az provider show -n Microsoft.ContainerInstance
+
+az container create --name demo3-app --image quadrotech.azurecr.io/demo3:1.0.0 --cpu 1 --memory 1 --registry-password H4XjpwvL96DTfoC=VY0OD2JmqGFDXbEk --ip-address public --os-type Windows -g ContainerRegistry
+
+az container show --name demo3-app --resource-group ContainerRegistry --query state
+
+az container show --name demo3-app --resource-group ContainerRegistry --query ipAddress.ip
+
+az container logs --name demo3-app -g ContainerRegistry
+
+# docker.exe image tag quadrotech/demo3:latest quadrotech/demo3:1.0.0
+
+# Install-Module AzureRM -Force
+
+# Import-Module AzureRM
+
+# Login-AzureRmAccount
+
+# $registry = Get-AzureRmContainerRegistry -ResourceGroupName "quadrotechdemo" -Name "quadrotechdemo"
+# $creds = Get-AzureRmContainerRegistryCredential -Registry $Registry
+# docker login $Registry.LoginServer -u $creds.Username -p $creds.Password
+
+# Get-AzureRmContainerRegistry | Select Loginserver 
+# #quadrotechdemo.azurecr.io 
+
+# docker tag quadrotech/demo3:latest quadrotechdemo.azurecr.io/demo3:1.0.0
+# docker push quadrotechdemo.azurecr.io/demo3:1.0.0
+
+# docker pull quadrotechdemo.azurecr.io/demo3:1.0.0
+
+# az acr repository delete -n quadrotechdemo --repository demo3 --tag 1.0.0
 
 
 
