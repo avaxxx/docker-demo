@@ -1,3 +1,4 @@
+
 FROM microsoft/nanoserver
 
 COPY Script.ps1 c:\\Script.ps1

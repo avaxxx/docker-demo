@@ -1,14 +1,19 @@
+
 # FROM microsoft/dotnet:2.0.0-sdk-nanoserver
 # WORKDIR /src
 # COPY src/ .
-# RUN dotnet restore; dotnet build
+# RUN dotnet restore; dotnet build; dotnet publish
 # CMD ["dotnet", "run"]
 
-# FROM microsoft/dotnet:2.0.0-runtime-nanoserver
+#dotnet build
+#dotnet publish
+
+# FROM microsoft/aspnetcore:2.0.0
 # WORKDIR /dotnetapp
 # COPY ./src/bin/Debug/netcoreapp1.1/publish .
 # CMD ["dotnet", "HelloWorld.NetCore.dll"]
 
+### MULTI STAGE BUILD
 
 # build stage
 FROM microsoft/dotnet:2.0.0-sdk-nanoserver AS builder
