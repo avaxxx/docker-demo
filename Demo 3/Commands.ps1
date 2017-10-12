@@ -2,7 +2,7 @@ Install-Module -Scope CurrentUser posh-docker
 
 Import-Module posh-docker
 
-docker.exe image build -t quadrotech/demo3 .
+docker image build -t quadrotech/demo3 .
 
 docker run --name WebApi -p 80:80 -d quadrotech/demo3 
 
