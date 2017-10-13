@@ -1,9 +1,7 @@
 version: "2"
 services:
     web:
-        build: 
-          context: .
-          dockerfile: dockerfile
+        image: docker pull kitematic/hello-world-nginx
         ports:
             - "80:80"
 
