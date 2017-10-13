@@ -98,6 +98,9 @@ swarm-master-ip-quadrotechmgmt-1F6F72ED #https://docs.microsoft.com/en-us/azure/
 
 #------------------------------------------------------------------------------------------------
 
+https://github.com/portainer/portainer/issues/704
+
+#------------------------------------------------------------------------------------------------
 
 # http://quadrotechagents.westeurope.cloudapp.azure.com
 
