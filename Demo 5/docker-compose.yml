@@ -1,7 +1,7 @@
 version: "2"
 services:
     web:
-        image: 'quadrotechdemo.azurecr.io/demo5:2.0.0'
+        image: 'avaxxx/demo5'
         ports:
             - "80:80"
 

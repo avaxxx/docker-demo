@@ -70,6 +70,14 @@ export DOCKER_HOST=:2375
 # sudo curl -L https://github.com/docker/compose/releases/download/1.16.1/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
 # sudo chmod +x /usr/local/bin/docker-compose
 
+
+
+docker login quadrotech.azurecr.io -u quadrotech -p H4XjpwvL96DTfoC=VY0OD2JmqGFDXbEk
+
+docker pull quadrotechdemo.azurecr.io/demo5:2.0.0
+
+
+
 #------------------------------------------------------------------------------------------------
 
 docker-compose build
@@ -172,3 +180,12 @@ az group delete --name ContainerService --yes --no-wait
 # Insecure Registries:
 # 127.0.0.0/8
 # Live Restore Enabled: false
+
+
+
+
+docker image build -t avaxxx/demo5 .
+
+docker tag avaxxx/demo5  avaxxx/demo5:1.0.0
+
+docker push avaxxx/demo5 
