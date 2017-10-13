@@ -25,6 +25,7 @@ namespace src
                 app.UseDeveloperExceptionPage();
             }
 
+            // middleware
             app.Run(async (context) =>
             {
                 await context.Response.WriteAsync(Environment.MachineName);
