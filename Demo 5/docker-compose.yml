@@ -1,7 +1,7 @@
 version: "2"
 services:
     web:
-        image: 'kitematic/hello-world-nginx'
+        image: 'quadrotechdemo.azurecr.io/demo5:2.0.0'
         ports:
             - "80:80"
 
