@@ -1,5 +1,2 @@
-GET http://192.168.185.232/api/hello
-
-###
 
 GET http://104.45.19.232/api/hello

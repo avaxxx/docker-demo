@@ -2,6 +2,8 @@
 ###      LINUX     ####
 #######################
 
+docker help
+
 #get the docker information
 docker version
 

@@ -6,6 +6,15 @@ cd ..
 
 cd '.\Demo 3'
 
+#background container
+#the background container is the one that you'll use most in production - 
+#which keeps a long-running process running in the background. It's a container that
+#behaves like a Windows Service. In Docker terminology, it's called a detached container, and
+#it's the Docker service that keeps it running in the background. Inside the container, the process
+#runs in the foreground. The process might be a web server or a console application polling a
+#message queue for work, but as long as the process keeps running, Docker will keep the
+#container alive.
+
 docker image build -t quadrotech/demo3 .
 
 #------------------------------------------------------------------------------------------------
@@ -158,12 +167,3 @@ az container logs --name demo3-app -g ContainerRegistry
 # Successfully built 427a747cb131
 # Successfully tagged quadrotech/demo3:latest
 #endregion
-
-#background container
-#the background container is the one that you'll use most in production - 
-#which keeps a long-running process running in the background. It's a container that
-#behaves like a Windows Service. In Docker terminology, it's called a detached container, and
-#it's the Docker service that keeps it running in the background. Inside the container, the process
-#runs in the foreground. The process might be a web server or a console application polling a
-#message queue for work, but as long as the process keeps running, Docker will keep the
-#container alive.
