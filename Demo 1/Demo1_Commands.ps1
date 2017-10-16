@@ -21,6 +21,10 @@ docker pull kiasaki/alpine-postgres
 
 #------------------------------------------------------------------------------------------------
 
+docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 -d kiasaki/alpine-postgres
+
+#------------------------------------------------------------------------------------------------
+
 docker pull microsoft/mssql-server-linux:2017-GA
 
 #------------------------------------------------------------------------------------------------
