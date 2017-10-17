@@ -46,7 +46,7 @@ CMD powershell -command \
 
 ENTRYPOINT ["dotnet", "HelloWebApi.dll"]
 
-# FROM microsoft/aspnetcore-build:2.0 
+# FROM microsoft/aspnetcore-build:2.0.0
 
 # COPY src/ /app
 
