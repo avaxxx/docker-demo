@@ -26,7 +26,7 @@ az acs create --name ContainerService --orchestrator-type Swarm --resource-group
 
 #------------------------------------------------------------------------------------------------
 
-az network public-ip list --resource-group ContainerService --query "[*].{Name:name,IPAddress:ipAddress}" -o table
+az network public-ip list --resource-group ContainerServiceRG --query "[*].{Name:name,IPAddress:ipAddress}" -o table
 
 #------------------------------------------------------------------------------------------------
 
@@ -34,14 +34,16 @@ az network public-ip list --resource-group ContainerService --query "[*].{Name:n
 
 #------------------------------------------------------------------------------------------------
 
-# swarm-agent-ip-quadrotechagents-C603A516  13.95.29.165
-# swarm-master-ip-quadrotechmgmt-C603A516   13.93.111.9
+# Name                                      IPAddress
+# ----------------------------------------  --------------
+# swarm-agent-ip-quadrotechagents-76F5FF19  52.166.193.139
+# swarm-master-ip-quadrotechmgmt-76F5FF19   52.166.196.38
 
 # Your public key has been saved in /home/avaxxx/.ssh/id_rsa.pub.
 
 #------------------------------------------------------------------------------------------------
 
-ssh azureuser@13.93.111.9 -A -p 2200 -i /mnt/c/Users/avaxx/.ssh/id_rsa
+ssh azureuser@52.166.196.38 -A -p 2200 -i /mnt/c/Users/avaxx/.ssh/id_rsa
 
 #------------------------------------------------------------------------------------------------
 
@@ -55,6 +57,7 @@ docker swarm init
 
 # get join token
 #??docker swarm join-token manager
+# docker swarm join --token SWMTKN-1-2qqjkez5a9joa6k4z8fdaokfhhm4pjk6v7eze5gllgrsvyzmpg-2y8j6abwr9iqtq1titv4jne4s 172.16.0.5:2377
 
 #------------------------------------------------------------------------------------------------
 
@@ -70,7 +73,8 @@ docker ps
 
 #------------------------------------------------------------------------------------------------
 
-address to portainer
+# portainer
+# http://52.166.196.38:9000
 
 #------------------------------------------------------------------------------------------------
 
