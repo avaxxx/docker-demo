@@ -84,15 +84,15 @@ az container create --name demo3-app --image quadrotech.azurecr.io/demo3:1.0.0 -
 
 #------------------------------------------------------------------------------------------------
 
-az container show --name demo3-app --resource-group ContainerRegistry --query state
+az container show --name demo3-app --resource-group ContainerInstance --query state
 
 #------------------------------------------------------------------------------------------------
 
-az container show --name demo3-app --resource-group ContainerRegistry --query ipAddress.ip
+az container show --name demo3-app --resource-group ContainerInstance --query ipAddress.ip
 
 #------------------------------------------------------------------------------------------------
 
-az container logs --name demo3-app -g ContainerRegistry
+az container logs --name demo3-app -g ContainerInstance
 
 #------------------------------------------------------------------------------------------------
 
